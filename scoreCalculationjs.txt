@@ -1,0 +1,156 @@
+function validate()
+{
+   var isValid=true;
+
+   if(!isValidMPT())
+   {
+     isValid=false;
+	 alert("MPT marks should less than or equal to 70");
+   }   
+
+   if(!isValidMTT())
+   {
+     isValid=false;
+	 alert("MTT marks should less than or equal to 64");
+   }   
+
+   if(!isValidAssignment())
+   {
+     isValid=false;
+	 alert("Assignment marks should less than or equal to 100");
+   }   
+
+   
+   if(!isValidModule())
+   {
+     isValid=false;
+	 alert("please select a Valid module");
+	 alert("valid JEE modules are Core Java, Servlet-JSP and Spring");
+	 alert("valid .NET modules are C#, ADO.NET and ASP.NET");
+   }   
+   
+   if(isValid)
+   {
+     display();
+   }	 
+   
+   return isValid;
+}
+
+function isValidMPT()
+{
+   selected=false;
+
+   mpt=document.getElementById("txtMPT").value;
+
+   
+   if(mpt <=70)
+   {
+      selected=true;
+   }
+
+   return selected
+
+}
+
+function isValidMTT()
+{
+   selected=false;
+
+   mtt=document.getElementById("txtMTT").value;
+
+   
+   if(mtt <=64)
+   {
+      selected=true;
+   }
+
+   return selected
+
+}
+
+
+function isValidAssignment()
+{
+   selected=false;
+
+   assignmentMarks=document.getElementById("txtAssignment").value;
+
+   
+   if(assignmentMarks <=100)
+   {
+      selected=true;
+   }
+
+   return selected
+
+}
+
+
+function isValidModule()
+{
+   selected=false;
+
+   domainName=document.getElementById("selDomain").value;
+   moduleName=document.getElementById("selModule").value;
+   
+   if(domainName=="JEE" && (moduleName=="Core Java" || moduleName=="Servlet-JSP" || moduleName=="Spring"))
+   {
+      selected=true;
+   }
+   else if(domainName!="JEE" && (moduleName!="Core Java" && moduleName!="Servlet-JSP" && moduleName!="Spring"))
+   {
+      selected=true;
+   }
+   else
+   {
+      selected=false;
+   }   
+   return selected;
+   }
+
+function getTotalMarks()
+   {
+    mttMarks=document.getElementById("txtMTT").value;
+    mptMarks=document.getElementById("txtMPT").value;
+	assignmentMarks=document.getElementById("txtAssignment").value;
+    totalScore= (mptMarks*70)/70 + (mttMarks*15)/64 + (assignmentMarks*15)/100
+    return totalScore;
+	}
+
+function display()
+{	 
+     total=getTotalMarks();
+     if(total >89)
+	 {
+	  score =5
+	  status="Pass"
+	  }
+	 else if(total >79)
+	 {
+	  score =4
+	  status="Pass"
+	  }
+ 	 else if(total >69)
+	 {
+	  score =3
+	  status="Pass"
+	  }
+	 else if(total >59)
+	 {
+	  score =2
+	  status="Pass"
+	  }
+	 else if(total >49)
+	 {
+	  score =1
+	  status="Fail"
+	  }
+	 else
+	 {
+	  score =0
+	  status="Fail"
+	  }
+
+     alert("Total Marks:"+total+"    Score:"+score+"     Status:"+status);
+}	 
